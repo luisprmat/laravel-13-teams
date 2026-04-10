@@ -18,6 +18,12 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
+        "laravel-lang/actions": "^1.12",
+        "laravel-lang/attributes": "^2.15",
+        "laravel-lang/lang": "^15.29",
+        "laravel-lang/publisher": "^16.8",
+        "laravel-lang/starter-kits": "^1.12",
+        "laravel-lang/status-generator": "^2.14",
         "laravel/boost": "^2.2",
         "laravel/pail": "^1.2.5",
         "laravel/pint": "^1.27",
