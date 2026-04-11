@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Teams')] class extends Component {
+new class extends Component
+{
     public TeamInvitation $invitation;
 
     public function mount(TeamInvitation $invitation): void
@@ -60,6 +60,11 @@ new #[Title('Teams')] class extends Component {
                 'invitation' => [__('This invitation was sent to a different email address.')],
             ]);
         }
+    }
+
+    public function render()
+    {
+        return $this->view()->title(__('Teams'));
     }
 }; ?>
 

@@ -6,10 +6,10 @@ use App\Support\UserTeam;
 use Flux\Flux;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Teams')] class extends Component {
+new class extends Component
+{
     public string $name = '';
 
     public function createTeam(CreateTeam $createTeam): void
@@ -35,6 +35,11 @@ new #[Title('Teams')] class extends Component {
     public function getTeamsProperty()
     {
         return Auth::user()->toUserTeams(includeCurrent: true);
+    }
+
+    public function render()
+    {
+        return $this->view()->title(__('Teams'));
     }
 }; ?>
 

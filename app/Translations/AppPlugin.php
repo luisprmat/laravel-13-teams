@@ -11,6 +11,7 @@ class AppPlugin extends Plugin
         return [
             // path from $base_path/source for PluginManager
             'app.json' => '{locale}.json',
+            '_teams.php' => '{locale}/_teams.php',
         ];
     }
 }
