@@ -8060,16 +8060,16 @@
         },
         {
             "name": "laravel-lang/starter-kits",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/starter-kits.git",
-                "reference": "4c54f1349e4354ed69cdf3a6c37d8bdf0c847790"
+                "reference": "1c01f65cbbf6b47cde1e43c4ccef9473a3991081"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/starter-kits/zipball/4c54f1349e4354ed69cdf3a6c37d8bdf0c847790",
-                "reference": "4c54f1349e4354ed69cdf3a6c37d8bdf0c847790",
+                "url": "https://api.github.com/repos/Laravel-Lang/starter-kits/zipball/1c01f65cbbf6b47cde1e43c4ccef9473a3991081",
+                "reference": "1c01f65cbbf6b47cde1e43c4ccef9473a3991081",
                 "shasum": ""
             },
             "require": {
@@ -8121,7 +8121,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Lang/starter-kits/issues",
-                "source": "https://github.com/Laravel-Lang/starter-kits/tree/1.12.0"
+                "source": "https://github.com/Laravel-Lang/starter-kits/tree/1.13.0"
             },
             "funding": [
                 {
@@ -8133,7 +8133,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-04-08T09:37:11+00:00"
+            "time": "2026-04-11T14:14:55+00:00"
         },
         {
             "name": "laravel-lang/status-generator",
