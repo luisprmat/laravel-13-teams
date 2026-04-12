@@ -8,4 +8,8 @@ return [
         'admin' => 'Admin',
         'member' => 'Member',
     ],
+
+    'validation' => [
+        'current_team' => 'The selected :attribute does not belong to your team.',
+    ],
 ];

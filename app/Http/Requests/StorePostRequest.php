@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Models\Post;
+use App\Rules\BelongsToCurrentTeam;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StorePostRequest extends FormRequest
 {
@@ -25,11 +25,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => [
-                'required',
-                Rule::exists('categories', 'id')
-                    ->where('team_id', $this->user()->current_team_id),
-            ],
+            'category_id' => ['required', new BelongsToCurrentTeam('categories')],
             'title' => ['required', 'string', 'max:255'],
             'post_text' => ['required', 'string'],
         ];

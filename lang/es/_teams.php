@@ -8,4 +8,7 @@ return [
         'member' => 'Miembro',
         'owner' => 'Propietario',
     ],
+    'validation' => [
+        'current_team' => 'La :attribute seleccionada no pertenece a su equipo.',
+    ],
 ];

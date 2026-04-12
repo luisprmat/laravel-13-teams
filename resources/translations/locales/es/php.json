@@ -1,5 +1,6 @@
 {
     "role.admin": "Administrador",
     "role.member": "Miembro",
-    "role.owner": "Propietario"
+    "role.owner": "Propietario",
+    "validation.current_team": "La :attribute seleccionada no pertenece a su equipo."
 }
