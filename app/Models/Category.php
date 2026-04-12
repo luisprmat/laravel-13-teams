@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\BelongsToTeam;
 use App\Models\Scopes\TeamScope;
 use Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #[ScopedBy([TeamScope::class])]
 class Category extends Model
 {
+    use BelongsToTeam;
+
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
 

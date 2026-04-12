@@ -38,10 +38,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request, Team $currentTeam): RedirectResponse
     {
-        Post::create([
-            'team_id' => $request->user()->current_team_id,
-            ...$request->validated(),
-        ]);
+        Post::create($request->validated());
 
         return redirect()->route('posts.index')->with('success', __('Post created.'));
     }

@@ -107,3 +107,15 @@ test('store requires all fields', function () {
         ->post(route('posts.store'), [])
         ->assertSessionHasErrors(['category_id', 'title', 'post_text']);
 });
+
+test('store rejects category from another team', function () {
+    $otherCategory = Category::factory()->create(); // different team
+
+    $this->actingAs($this->user)
+        ->post(route('posts.store'), [
+            'category_id' => $otherCategory->id,
+            'title' => 'My Post',
+            'post_text' => 'Content here.',
+        ])
+        ->assertSessionHasErrors('category_id');
+});

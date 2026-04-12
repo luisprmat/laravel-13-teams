@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\BelongsToTeam;
 use App\Models\Scopes\TeamScope;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[ScopedBy([TeamScope::class])]
 class Post extends Model
 {
+    use BelongsToTeam;
+
     /** @use HasFactory<PostFactory> */
     use HasFactory;
 

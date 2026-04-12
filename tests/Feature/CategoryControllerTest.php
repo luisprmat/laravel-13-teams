@@ -96,3 +96,14 @@ test('store requires name', function () {
         ->post(route('categories.store'), ['name' => ''])
         ->assertSessionHasErrors('name');
 });
+
+test('BelongsToTeam trait auto-assigns team_id on create', function () {
+    $this->actingAs($this->user);
+
+    $category = Category::create([
+        'name' => 'Auto Team',
+        'slug' => 'auto-team',
+    ]);
+
+    expect($category->team_id)->toBe($this->team->id);
+});
