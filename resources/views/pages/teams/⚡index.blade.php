@@ -73,14 +73,14 @@ new class extends Component
                     </div>
 
                     <div class="flex items-center gap-1">
-                        <flux:tooltip :content="$team->role === 'member' ? __('View team') : __('Edit team')">
+                        <flux:tooltip :content="in_array($team->role, ['member', 'viewer']) ? __('View team') : __('Edit team')">
                             <flux:button
                                 variant="ghost"
                                 size="sm"
-                                :icon="$team->role === 'member' ? 'eye' : 'pencil'"
+                                :icon="in_array($team->role, ['member', 'viewer']) ? 'eye' : 'pencil'"
                                 :href="route('teams.edit', $team->slug)"
                                 wire:navigate
-                                :data-test="$team->role === 'member' ? 'team-view-button' : 'team-edit-button'"
+                                :data-test="in_array($team->role, ['member', 'viewer']) ? 'team-view-button' : 'team-edit-button'"
                             />
                         </flux:tooltip>
                     </div>

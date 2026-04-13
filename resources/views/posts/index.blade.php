@@ -1,9 +1,11 @@
 <x-layouts::app :title="__('Posts')">
     <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">{{ __('Posts') }}</flux:heading>
-        <flux:button :href="route('posts.create')" variant="primary" wire:navigate>
-            {{ __('New Post') }}
-        </flux:button>
+        @can('create', App\Models\Post::class)
+            <flux:button :href="route('posts.create')" variant="primary" wire:navigate>
+                {{ __('New Post') }}
+            </flux:button>
+        @endcan
     </div>
 
     @if (session('success'))
@@ -28,9 +30,11 @@
                     <flux:table.cell>{{ $post->created_at->isoFormat('LL') }}</flux:table.cell>
                     <flux:table.cell class="text-right">
                         <div class="flex items-center justify-end gap-2">
-                            <flux:button size="xs" :href="route('posts.edit', $post)" wire:navigate>
-                                {{ __('Edit') }}
-                            </flux:button>
+                            @can('update', $post)
+                                <flux:button size="xs" :href="route('posts.edit', $post)" wire:navigate>
+                                    {{ __('Edit') }}
+                                </flux:button>
+                            @endcan
                             @can('delete', $post)
                                 <form method="POST" action="{{ route('posts.destroy', $post) }}" onsubmit="return confirm('{{ __('Are you sure you want to delete this post?') }}')">
                                     @csrf

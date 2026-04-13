@@ -1,9 +1,11 @@
 <x-layouts::app :title="__('Categories')">
     <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">{{ __('Categories') }}</flux:heading>
-        <flux:button :href="route('categories.create')" variant="primary" wire:navigate>
-            {{ __('New Category') }}
-        </flux:button>
+        @can('create', App\Models\Category::class)
+            <flux:button :href="route('categories.create')" variant="primary" wire:navigate>
+                {{ __('New Category') }}
+            </flux:button>
+        @endcan
     </div>
 
     @if (session('success'))
@@ -30,9 +32,11 @@
                     <flux:table.cell>{{ $category->created_at->isoFormat('LL') }}</flux:table.cell>
                     <flux:table.cell class="text-right">
                         <div class="flex items-center justify-end gap-2">
-                            <flux:button size="xs" :href="route('categories.edit', $category)" wire:navigate>
-                                {{ __('Edit') }}
-                            </flux:button>
+                            @can('update', $category)
+                                <flux:button size="xs" :href="route('categories.edit', $category)" wire:navigate>
+                                    {{ __('Edit') }}
+                                </flux:button>
+                            @endcan
                             @can('delete', $category)
                                 <form method="POST" action="{{ route('categories.destroy', $category) }}" onsubmit="return confirm('{{ __('Are you sure you want to delete this category?') }}')">
                                     @csrf

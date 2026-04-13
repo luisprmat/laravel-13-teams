@@ -29,7 +29,9 @@ class CategoryPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        $role = $user->teamRole($user->currentTeam);
+
+        return $role !== null && $role->isAtLeast(TeamRole::Member);
     }
 
     /**
@@ -37,7 +39,13 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category): bool
     {
-        return $user->current_team_id === $category->team_id;
+        if ($user->current_team_id !== $category->team_id) {
+            return false;
+        }
+
+        $role = $user->teamRole($user->currentTeam);
+
+        return $role !== null && $role->isAtLeast(TeamRole::Editor);
     }
 
     /**

@@ -6,7 +6,9 @@ enum TeamRole: string
 {
     case Owner = 'owner';
     case Admin = 'admin';
+    case Editor = 'editor';
     case Member = 'member';
+    case Viewer = 'viewer';
 
     /**
      * Get the display label for the role.
@@ -30,7 +32,11 @@ enum TeamRole: string
                 TeamPermission::CreateInvitation,
                 TeamPermission::CancelInvitation,
             ],
+            self::Editor => [
+                TeamPermission::CreateInvitation,
+            ],
             self::Member => [],
+            self::Viewer => [],
         };
     }
 
@@ -49,9 +55,11 @@ enum TeamRole: string
     public function level(): int
     {
         return match ($this) {
-            self::Owner => 3,
-            self::Admin => 2,
-            self::Member => 1,
+            self::Owner => 50,
+            self::Admin => 40,
+            self::Editor => 30,
+            self::Member => 20,
+            self::Viewer => 10,
         };
     }
 

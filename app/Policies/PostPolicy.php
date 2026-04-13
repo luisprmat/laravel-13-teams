@@ -29,7 +29,9 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        $role = $user->teamRole($user->currentTeam);
+
+        return $role !== null && $role->isAtLeast(TeamRole::Member);
     }
 
     /**
@@ -37,7 +39,13 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return $user->current_team_id === $post->team_id;
+        if ($user->current_team_id !== $post->team_id) {
+            return false;
+        }
+
+        $role = $user->teamRole($user->currentTeam);
+
+        return $role !== null && $role->isAtLeast(TeamRole::Member);
     }
 
     /**

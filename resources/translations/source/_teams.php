@@ -6,7 +6,9 @@ return [
     'role' => [
         'owner' => 'Owner',
         'admin' => 'Admin',
+        'editor' => 'Editor',
         'member' => 'Member',
+        'viewer' => 'Viewer',
     ],
 
     'validation' => [

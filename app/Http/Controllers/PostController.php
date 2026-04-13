@@ -28,6 +28,8 @@ class PostController extends Controller
      */
     public function create(Team $currentTeam): View
     {
+        Gate::authorize('create', Post::class);
+
         $categories = Category::orderBy('name')->get();
 
         return view('posts.create', compact('categories'));
