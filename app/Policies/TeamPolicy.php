@@ -81,6 +81,16 @@ class TeamPolicy
     }
 
     /**
+     * Determine whether the user can leave the team.
+     */
+    public function leave(User $user, Team $team): bool
+    {
+        return ! $team->is_personal
+            && $user->belongsToTeam($team)
+            && ! $user->ownsTeam($team);
+    }
+
+    /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Team $team): bool

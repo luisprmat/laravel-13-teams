@@ -3,6 +3,7 @@
     "Actions": "Actions",
     "Are you sure you want to delete this category?": "Are you sure you want to delete this category?",
     "Are you sure you want to delete this post?": "Are you sure you want to delete this post?",
+    "Are you sure you want to leave this team?": "Are you sure you want to leave this team?",
     "Categories": "Categories",
     "Category": "Category",
     "Category created.": "Category created.",
@@ -14,11 +15,13 @@
     "Created": "Created",
     "Edit Category": "Edit Category",
     "Edit Post": "Edit Post",
+    "Leave Team": "Leave Team",
     "Name": "Name",
     "New Category": "New Category",
     "New Post": "New Post",
     "No categories found.": "No categories found.",
     "No posts found.": "No posts found.",
+    "Owners cannot leave. Transfer ownership first.": "Owners cannot leave. Transfer ownership first.",
     "Personal teams cannot be deleted.": "Personal teams cannot be deleted.",
     "Post created.": "Post created.",
     "Post deleted.": "Post deleted.",
@@ -28,5 +31,7 @@
     "Slug": "Slug",
     "Team deleted.": "Team deleted.",
     "Team Settings": "Team Settings",
-    "Title": "Title"
+    "Title": "Title",
+    "You cannot leave a personal team.": "You cannot leave a personal team.",
+    "You have left the team.": "You have left the team."
 }

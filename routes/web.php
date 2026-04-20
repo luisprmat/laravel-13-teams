@@ -19,6 +19,8 @@ Route::prefix('{current_team}')
         Route::resource('categories', CategoryController::class)->except(['show']);
         Route::resource('posts', PostController::class)->except(['show']);
 
+        Route::post('leave', [TeamController::class, 'leave'])->name('team.leave');
+
         Route::middleware('team.member:admin')->group(function () {
             Route::view('settings', 'team-settings')->name('team.settings');
         });

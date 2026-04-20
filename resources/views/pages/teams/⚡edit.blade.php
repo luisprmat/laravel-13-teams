@@ -239,6 +239,16 @@ new class extends Component
                         @endif
                     @endforeach
                 </div>
+
+                @can('leave', $teamModel)
+                    <form method="POST" action="{{ route('team.leave') }}"
+                          onsubmit="return confirm('{{ __('Are you sure you want to leave this team?') }}')">
+                        @csrf
+                        <flux:button type="submit" variant="danger" data-test="leave-team-button">
+                            {{ __('Leave Team') }}
+                        </flux:button>
+                    </form>
+                @endcan
             </div>
 
             @if (count($invitations) > 0)
