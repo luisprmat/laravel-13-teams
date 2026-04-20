@@ -69,7 +69,7 @@ test('viewers cannot update posts', function () {
         ->assertForbidden();
 });
 
-test('members can still create categories but can not update them', function () {
+test('members can create and update categories', function () {
     $member = User::factory()->create();
     $team = Team::factory()->create();
     $team->members()->attach($member, ['role' => TeamRole::Member->value]);
@@ -83,9 +83,9 @@ test('members can still create categories but can not update them', function () 
 
     $this->actingAs($member)
         ->put(route('categories.update', $category), ['name' => 'Updated by Member'])
-        ->assertForbidden();
+        ->assertRedirect(route('categories.index'));
 
-    expect($category->fresh()->name)->toBe('Member Category');
+    expect($category->fresh()->name)->toBe('Updated by Member');
 });
 
 test('editors can still create and update categories', function () {

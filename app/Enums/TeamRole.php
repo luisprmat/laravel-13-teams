@@ -31,11 +31,26 @@ enum TeamRole: string
                 TeamPermission::UpdateTeam,
                 TeamPermission::CreateInvitation,
                 TeamPermission::CancelInvitation,
+                TeamPermission::CreateCategory,
+                TeamPermission::UpdateCategory,
+                TeamPermission::DeleteCategory,
+                TeamPermission::CreatePost,
+                TeamPermission::UpdatePost,
+                TeamPermission::DeletePost,
             ],
             self::Editor => [
                 TeamPermission::CreateInvitation,
+                TeamPermission::CreateCategory,
+                TeamPermission::UpdateCategory,
+                TeamPermission::CreatePost,
+                TeamPermission::UpdatePost,
             ],
-            self::Member => [],
+            self::Member => [
+                TeamPermission::CreateCategory,
+                TeamPermission::UpdateCategory,
+                TeamPermission::CreatePost,
+                TeamPermission::UpdatePost,
+            ],
             self::Viewer => [],
         };
     }

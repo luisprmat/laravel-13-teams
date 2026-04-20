@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Enums\TeamRole;
+use App\Enums\TeamPermission;
 use App\Models\Post;
 use App\Models\User;
 
@@ -29,9 +29,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        $role = $user->teamRole($user->currentTeam);
-
-        return $role !== null && $role->isAtLeast(TeamRole::Member);
+        return $user->hasTeamPermission($user->currentTeam, TeamPermission::CreatePost);
     }
 
     /**
@@ -43,9 +41,7 @@ class PostPolicy
             return false;
         }
 
-        $role = $user->teamRole($user->currentTeam);
-
-        return $role !== null && $role->isAtLeast(TeamRole::Member);
+        return $user->hasTeamPermission($user->currentTeam, TeamPermission::UpdatePost);
     }
 
     /**
@@ -57,8 +53,6 @@ class PostPolicy
             return false;
         }
 
-        $role = $user->teamRole($user->currentTeam);
-
-        return $role !== null && $role->isAtLeast(TeamRole::Admin);
+        return $user->hasTeamPermission($user->currentTeam, TeamPermission::DeletePost);
     }
 }
