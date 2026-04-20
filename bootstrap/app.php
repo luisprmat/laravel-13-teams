@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureTeamMembership;
 use App\Http\Middleware\SetTeamUrlDefaults;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
             SetTeamUrlDefaults::class,
+        ]);
+
+        $middleware->alias([
+            'team.member' => EnsureTeamMembership::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

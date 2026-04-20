@@ -19,11 +19,14 @@
     "New Post": "Nueva publicación",
     "No categories found.": "No se encontraron categorías.",
     "No posts found.": "No se encontraron publicaciones.",
+    "Personal teams cannot be deleted.": "Los equipos personales no se pueden eliminar.",
     "Post created.": "Publicación creada.",
     "Post deleted.": "Publicación eliminada.",
     "Post updated.": "Publicación actualizada.",
     "Posts": "Publicaciones",
     "Select a category": "Seleccionar una categoría",
     "Slug": "Slug",
+    "Team deleted.": "Equipo eliminado.",
+    "Team Settings": "Ajustes de equipo",
     "Title": "Título"
 }

@@ -19,11 +19,14 @@
     "New Post": "New Post",
     "No categories found.": "No categories found.",
     "No posts found.": "No posts found.",
+    "Personal teams cannot be deleted.": "Personal teams cannot be deleted.",
     "Post created.": "Post created.",
     "Post deleted.": "Post deleted.",
     "Post updated.": "Post updated.",
     "Posts": "Posts",
     "Select a category": "Select a category",
     "Slug": "Slug",
+    "Team deleted.": "Team deleted.",
+    "Team Settings": "Team Settings",
     "Title": "Title"
 }
