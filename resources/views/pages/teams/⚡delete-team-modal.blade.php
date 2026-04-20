@@ -6,9 +6,11 @@ use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
-new class extends Component {
+new class extends Component
+{
     public Team $team;
 
     public string $deleteName = '';
@@ -18,7 +20,8 @@ new class extends Component {
         $this->team = $team;
     }
 
-    public function getDeleteConfirmLabelProperty(): string
+    #[Computed]
+    public function deleteConfirmLabel(): string
     {
         return __('Type ":name" to confirm', ['name' => $this->team->name]);
     }
@@ -65,7 +68,8 @@ new class extends Component {
     /**
      * @return Collection<int, UserTeam>
      */
-    public function getOtherTeamsProperty(): Collection
+    #[Computed]
+    public function otherTeams(): Collection
     {
         return Auth::user()->toUserTeams();
     }
