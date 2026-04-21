@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TeamSettingsController;
 use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -22,7 +23,9 @@ Route::prefix('{current_team}')
         Route::post('leave', [TeamController::class, 'leave'])->name('team.leave');
 
         Route::middleware('team.member:admin')->group(function () {
-            Route::view('settings', 'team-settings')->name('team.settings');
+            Route::get('settings', [TeamSettingsController::class, 'edit'])->name('team.settings');
+            Route::put('settings', [TeamSettingsController::class, 'update'])->name('team.settings.update');
+            Route::post('settings/avatar', [TeamSettingsController::class, 'updateAvatar'])->name('team.settings.avatar');
         });
 
         Route::middleware('team.member:owner')->group(function () {
