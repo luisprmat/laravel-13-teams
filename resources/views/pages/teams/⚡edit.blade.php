@@ -271,18 +271,33 @@ new class extends Component
                                     </div>
                                 </div>
 
-                                @if ($this->permissions->canCancelInvitation)
-                                    <flux:modal.trigger name="cancel-invitation-{{ $invitation['code'] }}">
-                                        <flux:tooltip :content="__('Cancel invitation')">
-                                            <flux:button
-                                                variant="ghost"
-                                                size="sm"
-                                                icon="x-mark"
-                                                data-test="invitation-cancel-button"
-                                            />
-                                        </flux:tooltip>
-                                    </flux:modal.trigger>
-                                @endif
+                                <div class="flex items-center gap-2">
+                                    <flux:tooltip :content="__('Copy invite link')">
+                                        <flux:button
+                                            variant="ghost"
+                                            size="sm"
+                                            icon="link"
+                                            x-on:click="
+                                                navigator.clipboard.writeText('{{ route('team.join', $invitation['code']) }}');
+                                                $tooltip('{{ __('Copied!') }}', { timeout: 2000 });
+                                            "
+                                            data-test="invitation-copy-link"
+                                        />
+                                    </flux:tooltip>
+
+                                    @if ($this->permissions->canCancelInvitation)
+                                        <flux:modal.trigger name="cancel-invitation-{{ $invitation['code'] }}">
+                                            <flux:tooltip :content="__('Cancel invitation')">
+                                                <flux:button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    icon="x-mark"
+                                                    data-test="invitation-cancel-button"
+                                                />
+                                            </flux:tooltip>
+                                        </flux:modal.trigger>
+                                    @endif
+                                </div>
                             </div>
                             @if ($this->permissions->canCancelInvitation)
                                 <livewire:pages::teams.cancel-invitation-modal

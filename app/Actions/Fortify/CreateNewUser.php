@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Actions\Teams\CreateTeam;
 use App\Concerns\PasswordValidationRules;
 use App\Concerns\ProfileValidationRules;
+use App\Models\TeamInvitation;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -40,7 +41,34 @@ class CreateNewUser implements CreatesNewUsers
 
             $this->createTeam->handle($user, __(":user's Team", ['user' => str($user->name)->explode(' ')[0]]), isPersonal: true);
 
+            $this->handlePendingInvitation($user);
+
             return $user;
         });
+    }
+
+    private function handlePendingInvitation(User $user): void
+    {
+        $code = session()->pull('pending_invitation');
+
+        if (! $code) {
+            return;
+        }
+
+        $invitation = TeamInvitation::where('code', $code)
+            ->whereNull('accepted_at')
+            ->first();
+
+        if ($invitation) {
+            $team = $invitation->team;
+
+            $team->memberships()->firstOrCreate(
+                ['user_id' => $user->id],
+                ['role' => $invitation->role],
+            );
+
+            $invitation->update(['accepted_at' => now()]);
+            $user->switchTeam($team);
+        }
     }
 }

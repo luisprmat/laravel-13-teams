@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\TeamInvitation;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -22,6 +24,25 @@ class TeamController extends Controller
         }
 
         return redirect()->route('teams.index')->with('success', __('Team deleted.'));
+    }
+
+    public function join(string $code): RedirectResponse
+    {
+        $invitation = TeamInvitation::where('code', $code)
+            ->whereNull('accepted_at')
+            ->where(function ($query) {
+                $query->whereNull('expires_at')
+                    ->orWhere('expires_at', '>', now());
+            })
+            ->firstOrFail();
+
+        if (! Auth::check()) {
+            session(['pending_invitation' => $code]);
+
+            return redirect()->route('register');
+        }
+
+        return redirect()->route('invitations.accept', $invitation);
     }
 
     public function leave(Team $currentTeam): RedirectResponse

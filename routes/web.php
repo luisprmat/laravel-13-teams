@@ -30,6 +30,8 @@ Route::prefix('{current_team}')
         });
     });
 
+Route::get('join/{code}', [TeamController::class, 'join'])->name('team.join');
+
 Route::middleware(['auth'])->group(function () {
     Route::livewire('invitations/{invitation}/accept', 'pages::teams.accept-invitation')->name('invitations.accept');
 });
